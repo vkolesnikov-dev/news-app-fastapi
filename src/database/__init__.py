@@ -1,2 +1,2 @@
 class Base:
-    pass
+    metadata = None

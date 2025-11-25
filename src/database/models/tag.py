@@ -1,15 +1,15 @@
-from sqlalchemy import Column, Integer, DateTime, String
+from sqlalchemy import Column, Integer, DateTime, String, func
 from sqlalchemy.orm import relationship
 
 from src.database.models.base import BaseModel
 
 
 class Tag(BaseModel):
-    __tablename__ = "tag"
+    __tablename__ = "tags"
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, unique=True)
-    created_at = Column(DateTime, nullable=False)
+    created_at = Column(DateTime, nullable=False, server_default=func.now())
 
     posts = relationship("Post", secondary="post_tags", back_populates="tags")
 
