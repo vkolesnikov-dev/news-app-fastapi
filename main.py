@@ -1,13 +1,11 @@
 from fastapi import FastAPI
+from src.routers import posts, users
 
 app = FastAPI()
 
+app.include_router(posts.post_router, prefix="/posts", tags=["posts"])
+app.include_router(users.user_router, prefix="/users", tags=["users"])
 
 @app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+async def read_root():
+    return {"Hello": "World"}
