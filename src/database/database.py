@@ -20,5 +20,5 @@ def get_db():
         db.close()
 
 
-def create_tables():
+async def create_tables():
     Base.metadata.create_all(engine)
