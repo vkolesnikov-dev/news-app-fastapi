@@ -5,9 +5,8 @@ from src.config import settings
 
 Base = declarative_base()
 
-engine = create_engine(settings.DATABASE_URL, connect_args={"check_same_thread": False},echo=True)
+engine = create_engine(settings.DATABASE_URL, connect_args={"check_same_thread": False}, echo=True)
 Session_local = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
 
 
 def get_db():
@@ -19,3 +18,7 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+def create_tables():
+    Base.metadata.create_all(engine)

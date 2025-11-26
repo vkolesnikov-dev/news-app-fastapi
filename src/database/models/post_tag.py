@@ -7,7 +7,8 @@ from src.database.models.base import BaseModel
 class PostTag(BaseModel):
     __tablename__ = "post_tags"
 
-    post_id = Column(Integer, ForeignKey('posts.id'),primary_key=True, index=True)
-    tag_id = Column(Integer, ForeignKey('tags.id'),primary_key=True, index=True)
+    post_id = Column(Integer, ForeignKey('posts.id'), primary_key=True, index=True)
+    tag_id = Column(Integer, ForeignKey('tags.id'), primary_key=True, index=True)
     added_by = Column(Integer, ForeignKey("users.id"))
-
+    post = relationship("Post", back_populates="post_tags")
+    tag = relationship("Tag", back_populates="post_tags")

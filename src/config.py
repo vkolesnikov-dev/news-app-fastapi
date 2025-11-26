@@ -2,9 +2,10 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    DATABASE_URL: str = "sqlite:///./news_site.db"
+    DATABASE_URL: str = "sqlite:///./db.sqlite3"
 
     class Config:
         env_file = ".env"
+
 
 settings = Settings()

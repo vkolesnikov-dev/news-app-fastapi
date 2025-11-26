@@ -11,7 +11,8 @@ class Tag(BaseModel):
     name = Column(String, nullable=False, unique=True)
     created_at = Column(DateTime, nullable=False, server_default=func.now())
 
-    posts = relationship("Post", secondary="post_tags", back_populates="tags")
+    # posts = relationship("Post", secondary="post_tags", back_populates="tags")
+    post_tags = relationship("PostTag", back_populates="tag")
 
 
     def __repr__(self):

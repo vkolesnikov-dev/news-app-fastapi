@@ -17,7 +17,8 @@ class Post(BaseModel):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
     author = relationship("User", back_populates="posts")
-    tags = relationship("Tag", back_populates="posts", secondary="post_tags")
+    post_tags = relationship("PostTag", back_populates="post")
+    # tags = relationship("Tag", back_populates="posts", secondary="post_tags")
 
     def __repr__(self):
         return f"<Post(id={self.id}, title='{self.title}')>"
