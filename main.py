@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from src.database.database import create_tables
-from src.routers import posts, users
+from src.routers import posts, users, auth
 
 
 @asynccontextmanager
@@ -18,10 +18,7 @@ def get_app() -> FastAPI:
 
     application.include_router(posts.post_router, prefix="/posts", tags=["posts"])
     application.include_router(users.user_router, prefix="/users", tags=["users"])
-
-    @application.get("/")
-    async def read_root():
-        return {"Hello": "World"}
+    application.include_router(auth.auth_router, prefix="/auth", tags=["auth"])
 
     return application
 
